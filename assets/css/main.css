@@ -1,0 +1,54 @@
+/* Cleaned up default Vite styles to prevent Tailwind layout conflicts */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+.reveal-item {
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-up { transform: translateY(30px) scale(0.95); }
+.reveal-down { transform: translateY(-30px) scale(0.95); }
+.reveal-left { transform: translateX(30px) scale(0.95); }
+.reveal-right { transform: translateX(-30px) scale(0.95); }
+.reveal-scale { transform: scale(0.92); }
+
+.revealed {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+/* Landing Page Dark Theme - Restored Map & UI Variables */
+.dark-theme {
+  --map-water: transparent;
+  --map-land: hsl(265, 30%, 15%);
+  --primary: hsl(270, 60%, 40%);
+  --border: hsl(270, 30%, 20%);
+  --map-pin: hsl(0, 0%, 100%);
+  --secondary: hsl(45, 93%, 47%);
+  --background: hsl(265, 75%, 4%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted-foreground: hsl(265, 20%, 65%);
+  --card: hsl(265, 45%, 10%);
+  
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
