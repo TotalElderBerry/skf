@@ -3,11 +3,11 @@ import { ref } from 'vue'
 
 const activeItem = ref('Accounts')
 const navItems = [
-  { name: 'Dashboard', icon: 'dashboard' },
-  { name: 'Accounts', icon: 'group' },
-  { name: 'Reports', icon: 'analytics' },
-  { name: 'Elections', icon: 'how_to_reg' },
-  { name: 'Settings', icon: 'tune' }
+  { name: 'Dashboard', icon: 'mdi-view-dashboard' },
+  { name: 'Accounts', icon: 'mdi-account-group' },
+  { name: 'Reports', icon: 'mdi-chart-line' },
+  { name: 'Elections', icon: 'mdi-account-check' },
+  { name: 'Settings', icon: 'mdi-tune' }
 ]
 
 const federations = [
@@ -25,7 +25,7 @@ const federations = [
       <div class="mb-12 px-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <span class="material-symbols-outlined text-white font-bold" style="font-variation-settings: 'FILL' 1;">security</span>
+            <span class="mdi mdi-shield-check text-white text-xl font-bold"></span>
           </div>
           <div>
             <h1 class="text-xl font-bold text-slate-900 tracking-tighter">SK Admin</h1>
@@ -47,7 +47,7 @@ const federations = [
               : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
           ]"
         >
-          <span class="material-symbols-outlined" :style="activeItem === item.name ? 'font-variation-settings: \'FILL\' 1;' : ''">{{ item.icon }}</span>
+          <span :class="['mdi', item.icon, 'text-xl']"></span>
           <span>{{ item.name }}</span>
         </a>
       </nav>
@@ -62,7 +62,7 @@ const federations = [
     <!-- TopNavBar (Authenticated / Light Mode) -->
     <header class="w-full sticky top-0 z-40 bg-white/80 backdrop-blur-xl h-20 ml-64 flex justify-between items-center px-8 border-b border-slate-200">
       <div class="relative w-96">
-        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+        <span class="mdi mdi-magnify absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl"></span>
         <input 
           class="w-full bg-slate-100 border-none rounded-full py-2.5 pl-12 pr-6 text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500/50 placeholder:text-slate-400 transition-all font-medium" 
           placeholder="Search federations or officials..." 
@@ -71,10 +71,10 @@ const federations = [
       </div>
       <div class="flex items-center gap-6">
         <button class="text-slate-400 hover:text-indigo-600 transition-colors active:scale-95">
-          <span class="material-symbols-outlined">notifications</span>
+          <span class="mdi mdi-bell text-xl"></span>
         </button>
         <button class="text-slate-400 hover:text-indigo-600 transition-colors active:scale-95">
-          <span class="material-symbols-outlined">settings</span>
+          <span class="mdi mdi-cog text-xl"></span>
         </button>
         <div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
         <div class="flex items-center gap-3 pl-2">
@@ -110,7 +110,7 @@ const federations = [
         <!-- Stat Card 1 -->
         <div class="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
           <div class="absolute -right-4 -bottom-4 text-slate-100 group-hover:scale-110 transition-transform duration-500">
-            <span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'wght' 700;">group</span>
+            <span class="mdi mdi-account-group text-8xl"></span>
           </div>
           <p class="text-amber-600 text-xs font-bold uppercase tracking-widest mb-4">Total SK Accounts</p>
           <div class="flex items-baseline gap-2">
@@ -121,7 +121,7 @@ const federations = [
         <!-- Stat Card 2 -->
         <div class="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
           <div class="absolute -right-4 -bottom-4 text-slate-100 group-hover:scale-110 transition-transform duration-500">
-            <span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'wght' 700;">person</span>
+            <span class="mdi mdi-account text-8xl"></span>
           </div>
           <p class="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-4">Total Users</p>
           <div class="flex items-baseline gap-2">
@@ -132,7 +132,7 @@ const federations = [
         <!-- Stat Card 3 -->
         <div class="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
           <div class="absolute -right-4 -bottom-4 text-slate-100 group-hover:scale-110 transition-transform duration-500">
-            <span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'wght' 700;">check_circle</span>
+            <span class="mdi mdi-check-circle text-8xl"></span>
           </div>
           <p class="text-cyan-600 text-xs font-bold uppercase tracking-widest mb-4">Active Federations</p>
           <div class="flex items-baseline gap-2">
@@ -148,10 +148,10 @@ const federations = [
           <h4 class="font-headline font-bold text-lg text-slate-900">SK Federations Directory</h4>
           <div class="flex gap-2">
             <button class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
-              <span class="material-symbols-outlined text-xl">filter_list</span>
+              <span class="mdi mdi-filter-variant text-xl"></span>
             </button>
             <button class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
-              <span class="material-symbols-outlined text-xl">download</span>
+              <span class="mdi mdi-download text-xl"></span>
             </button>
           </div>
         </div>
@@ -233,8 +233,9 @@ const federations = [
   box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
 }
 
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+.mdi {
+  display: inline-block;
+  line-height: 1;
 }
 
 /* Ensure no background leakage from landing page */

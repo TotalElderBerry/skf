@@ -18,9 +18,9 @@
     </nav>
     
     <div class="flex items-center gap-4">
-      <button class="text-zinc-400 hover:text-white text-[13px] font-bold transition-colors">
+      <NuxtLink to="/login" class="text-zinc-400 hover:text-white text-[13px] font-bold transition-colors">
         Login
-      </button>
+      </NuxtLink>
       <button class="bg-white text-black px-6 py-2.5 rounded-full text-[13px] font-bold transition-all shadow-lg hover:shadow-white/20 active:scale-95">
         Get Started
       </button>

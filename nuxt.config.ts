@@ -6,7 +6,10 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss'],
-  css: ['~/assets/css/main.css'],
+  css: [
+    '~/assets/css/main.css',
+    '@mdi/font/css/materialdesignicons.min.css'
+  ],
   devServer: {
     port: 3000
   },
@@ -28,7 +31,6 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,FILL@0..1&display=swap' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700;800&display=swap' }
       ]
