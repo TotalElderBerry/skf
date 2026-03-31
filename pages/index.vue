@@ -19,9 +19,6 @@ onMounted(() => {
     <!-- Mesh pattern overlay for subtle texture -->
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] -z-10 mix-blend-overlay"></div>
 
-    <!-- Header Navigation Component -->
-    <Navbar />
-
     <!-- Hero Content Component (Modern Centered Style) -->
     <HeroSection />
     
@@ -31,10 +28,6 @@ onMounted(() => {
     <PricingSection v-reveal />
     <FaqAndCtaSection v-reveal />
     
-    <!-- Footer Footer -->
-    <footer class="mt-12 text-center pb-8 opacity-50 text-[11px] uppercase tracking-widest font-semibold relative z-10">
-      <p>Sangguniang Kabataan Federation Management Portal &copy; 2026</p>
-    </footer>
   </div>
 </template>
 

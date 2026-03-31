@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-
+definePageMeta({
+  layout: 'admin'
+})
 const activeItem = ref('Accounts')
 const navItems = [
   { name: 'Dashboard', icon: 'mdi-view-dashboard' },

@@ -10,6 +10,10 @@ onMounted(() => {
   setTimeout(() => isMounted.value = true, 50)
 })
 
+definePageMeta({
+  layout: "blank",
+})
+
 const handleLogin = (e) => {
   e.preventDefault()
   console.log('Login attempt:', { email: email.value, password: password.value, rememberMe: rememberMe.value })
@@ -31,7 +35,7 @@ const handleLogin = (e) => {
     <!-- Background Navigation Logo (Optional, consistent with branding) -->
     <div class="absolute top-8 left-8 flex items-center gap-3 group cursor-pointer" @click="$router.push('/')">
       <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform"></div>
-      <h2 class="font-display text-xl font-bold tracking-tight text-white hidden sm:block">
+      <h2 class="font-display text-xl font-bold tracking-tight text-white">
         SKLoud <span class="text-indigo-400">For SKFeds</span>
       </h2>
     </div>
