@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     }
   },
   app: {
+    baseURL: '/skf/',
     head: {
       title: 'SKLoud For SKFeds',
       meta: [
