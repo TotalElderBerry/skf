@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /* Cleaned up default Vite styles to prevent Tailwind layout conflicts */
 
 @keyframes float {

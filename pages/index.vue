@@ -23,10 +23,21 @@ onMounted(() => {
     <HeroSection />
     
     <!-- Expanded Dribbble Content Ported to SK-Fed -->
-    <FeaturesSection v-reveal />
-    <CapabilitiesSection v-reveal />
-    <PricingSection v-reveal />
-    <FaqAndCtaSection v-reveal />
+    <div id="features">
+      <FeaturesSection v-reveal />
+    </div>
+    
+    <div id="advantages">
+      <CapabilitiesSection v-reveal />
+    </div>
+    
+    <div id="pricing">
+      <PricingSection v-reveal />
+    </div>
+    
+    <div id="faq">
+      <FaqAndCtaSection v-reveal />
+    </div>
     
   </div>
 </template>

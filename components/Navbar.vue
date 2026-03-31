@@ -12,10 +12,10 @@
     </div>
     
     <nav class="hidden md:flex items-center gap-10 text-[13px] font-semibold text-zinc-400">
-      <a href="#" class="hover:text-white transition-all hover:translate-y-[-1px]">About us</a>
-      <NuxtLink to="/advantages" class="hover:text-white transition-all hover:translate-y-[-1px]">Advantages</NuxtLink>
-      <a href="#" class="hover:text-white transition-all hover:translate-y-[-1px]">Pricing</a>
-      <a href="#" class="hover:text-white transition-all hover:translate-y-[-1px]">FAQ</a>
+      <NuxtLink href="#" class="hover:text-white transition-all hover:translate-y-[-1px]">About us</NuxtLink>
+      <NuxtLink  href="#advantages" class="hover:text-white transition-all hover:translate-y-[-1px]">Advantages</NuxtLink >
+      <NuxtLink href="#pricing" class="hover:text-white transition-all hover:translate-y-[-1px]">Pricing</NuxtLink>
+      <NuxtLink href="#faq" class="hover:text-white transition-all hover:translate-y-[-1px]">FAQ</NuxtLink>
     </nav>
     
     <div class="flex items-center gap-3 md:gap-4">
