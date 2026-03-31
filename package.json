@@ -8,7 +8,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "gh-pages -d .output/public"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.14.0",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.5",
+    "gh-pages": "^6.3.0",
     "vite": "^8.0.1"
   }
 }

@@ -1,5 +1,9 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
+  ssr: false,
+  nitro: {
+    preset: 'static'
+  },
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss'],
   css: ['~/assets/css/main.css'],
