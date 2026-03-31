@@ -251,7 +251,7 @@ definePageMeta({
   </div>
 </template>
 
-<style>
+<style scoped>
 .hero-gradient {
   background: radial-gradient(circle at 50% 30%, rgba(204, 151, 255, 0.12) 0%, transparent 60%);
 }
