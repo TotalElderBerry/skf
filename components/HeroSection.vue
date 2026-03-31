@@ -48,8 +48,8 @@
       <!-- 1. Profile Card (Top Right) -->
       <FloatingCard 
         delay="400" 
-        position-classes="-top-6 -right-2 sm:-top-12 sm:-right-12 md:-right-20 w-48 sm:w-56"
-        scale-mobile="0.65"
+        position-classes="-top-12 sm:-top-6 -right-2 sm:-top-12 sm:-right-12 md:-right-20 w-48 sm:w-56"
+        scale-mobile="150"
         origin="right"
       >
         <div class="flex items-center gap-3 mb-3">
@@ -70,7 +70,7 @@
       <!-- 2. Request Card (Bottom Left) -->
       <FloatingCard 
         delay="600" 
-        position-classes="-bottom-8 -left-2 sm:-bottom-16 sm:-left-12 md:-left-24 w-56 sm:w-64"
+        position-classes="-bottom-14 sm:-bottom-12 -left-2 sm:-bottom-16 sm:-left-12 md:-left-24 w-56 sm:w-64"
         float-delay="-3s"
         scale-mobile="0.65"
         origin="left"
@@ -111,7 +111,7 @@
 /* Mobile adjustments for the floating components because transform: scale is tricky in templates */
 @media (max-width: 640px) {
   :deep(.glass-card) {
-    transform: scale(var(--mobile-scale, 0.65)) !important;
+    transform: scale(var(--mobile-scale, 0.95)) !important;
   }
 }
 </style>

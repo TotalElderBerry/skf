@@ -7,7 +7,7 @@ const activeRegion = ref(null)
 
 
 <template>
-  <div class="map-container">
+  <div class="map-container scale-125 md:scale-100">
     <svg
       viewBox="0 0 600 620"
       class="map-svg"
