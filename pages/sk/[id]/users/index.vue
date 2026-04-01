@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import BaseTable from '../../../components/base/BaseTable.vue'
 
 definePageMeta({
   layout: 'admin'
@@ -48,48 +49,42 @@ const recentRegistrations = ref([
             </div>
           </div>
 
-          <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-            <table class="w-full text-left">
-              <thead>
-                <tr class="bg-slate-50/50 border-b border-slate-100">
-                  <th class="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Resident</th>
-                  <th class="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Join Date</th>
-                  <th class="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Status</th>
-                  <th class="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-50">
-                <tr v-for="person in constituents" :key="person.id" class="hover:bg-slate-50/50 transition-colors group">
-                  <td class="px-8 py-5">
-                    <div class="flex items-center gap-4">
-                      <img :src="person.avatar" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" />
-                      <div class="flex flex-col">
-                        <span class="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors text-sm">{{ person.name }}</span>
-                        <span class="text-[10px] text-slate-400 font-medium tracking-tight">{{ person.email }}</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="px-8 py-5">
-                    <span class="text-sm font-bold text-slate-600">{{ person.date }}</span>
-                  </td>
-                  <td class="px-8 py-5">
-                    <div class="flex items-center gap-2">
-                      <div :class="['w-2 h-2 rounded-full', person.statusColor]"></div>
-                      <span class="text-xs font-bold text-slate-600">{{ person.status }}</span>
-                    </div>
-                  </td>
-                  <td class="px-8 py-5 text-right">
-                    <button class="text-indigo-600 text-xs font-black hover:underline tracking-widest uppercase">Manage</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="px-8 py-5 bg-slate-50/30 border-t border-slate-50 flex justify-between items-center">
-              <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest">Showing {{ constituents.length }} of 150</p>
-              <div class="flex gap-2">
-                <button class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-black text-slate-600 hover:border-indigo-300 transition-all">Next</button>
-              </div>
-            </div>
+          <div class="">
+                <BaseTable 
+                    :headers="['Resident', 'Join Date', 'Status']" 
+                    :totalCount="constituents.length"
+                >
+                    <template #rows>
+                        <tr v-for="person in constituents" :key="person.id" class="hover:bg-slate-50/50 transition-colors group">
+                            <td class="px-8 py-5">
+                            <div class="flex items-center gap-4">
+                                <img :src="person.avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                                <div class="flex flex-col">
+                                <span class="font-bold text-slate-900 text-sm">{{ person.name }}</span>
+                                <span class="text-[10px] text-slate-400 font-medium tracking-tight">{{ person.email }}</span>
+                                </div>
+                            </div>
+                            </td>
+
+                            <td class="px-8 py-5">
+                            <span class="text-sm font-bold text-slate-600">{{ person.date }}</span>
+                            </td>
+
+                            <td class="px-8 py-5">
+                            <div class="flex items-center gap-2">
+                                <div :class="['w-2 h-2 rounded-full', person.statusColor]"></div>
+                                <span class="text-xs font-bold text-slate-600">{{ person.status }}</span>
+                            </div>
+                            </td>
+
+                            <td class="px-8 py-5 text-right">
+                            <button class="text-indigo-600 text-xs font-black hover:underline tracking-widest uppercase">
+                                Manage
+                            </button>
+                            </td>
+                        </tr>
+                    </template>
+                </BaseTable>
           </div>
         </section>
 

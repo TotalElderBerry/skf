@@ -78,9 +78,10 @@ const communityLeaders = ref([
                 </button>
               </div>
               
-              <button class="px-8 py-3 bg-indigo-600 text-white font-black text-sm rounded-xl shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 active:scale-95 transition-all">
+            <BaseButton variant="primary">
                 Post Update
-              </button>
+            </BaseButton>
+
             </div>
           </div>
 

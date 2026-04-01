@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import BaseTable from '../../../components/base/BaseTable.vue'
 
 definePageMeta({
   layout: 'admin'
@@ -77,8 +78,13 @@ const engagementStats = ref({
                   <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Participants</p>
                 </div>
                 <div class="flex gap-3 w-full sm:w-auto">
-                  <button class="flex-1 px-6 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold text-sm hover:bg-slate-200">Details</button>
-                  <button class="flex-1 px-8 py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm shadow-lg shadow-indigo-600/20 hover:bg-indigo-700">Manage</button>
+                  <BaseButton variant="secondary" size="md" class="flex-1">
+                    Details
+                  </BaseButton>
+
+                  <BaseButton variant="primary" size="md" class="flex-1">
+                    Manage
+                  </BaseButton>
                 </div>
               </div>
             </div>
@@ -139,53 +145,49 @@ const engagementStats = ref({
             </div>
           </div>
 
-          <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-            <table class="w-full text-left">
-              <thead>
-                <tr class="bg-slate-50/50 border-b border-slate-100">
-                  <th class="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Event Detail</th>
-                  <th class="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Date</th>
-                  <th class="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Category</th>
-                  <th class="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest">Status</th>
-                  <th class="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-50">
+          <BaseTable 
+              :headers="['Event Detail', 'Date', 'Category', 'Status']" 
+              :totalCount="allEvents.length"
+          >
+              <template #rows>
                 <tr v-for="event in allEvents" :key="event.id" class="hover:bg-slate-50/50 transition-colors group">
-                  <td class="px-8 py-5">
+                    
+                    <td class="px-8 py-5">
                     <div class="flex flex-col">
-                      <span class="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">{{ event.name }}</span>
-                      <span class="text-xs text-slate-400 font-medium">{{ event.location }}</span>
+                        <span class="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors text-sm">
+                        {{ event.name }}
+                        </span>
+                        <span class="text-[10px] text-slate-400 font-medium italic">
+                        {{ event.location }}
+                        </span>
                     </div>
-                  </td>
-                  <td class="px-8 py-5">
+                    </td>
+
+                    <td class="px-8 py-5">
                     <span class="text-sm font-bold text-slate-600">{{ event.date }}</span>
-                  </td>
-                  <td class="px-8 py-5">
+                    </td>
+
+                    <td class="px-8 py-5">
                     <span class="px-3 py-1 rounded-lg text-[10px] font-black bg-indigo-50 text-indigo-600 uppercase tracking-wider">
-                      {{ event.category }}
+                        {{ event.category }}
                     </span>
-                  </td>
-                  <td class="px-8 py-5">
+                    </td>
+
+                    <td class="px-8 py-5">
                     <div class="flex items-center gap-2">
-                      <div :class="['w-2 h-2 rounded-full', event.statusColor]"></div>
-                      <span class="text-xs font-bold text-slate-600">{{ event.status }}</span>
+                        <div :class="['w-2 h-2 rounded-full', event.statusColor]"></div>
+                        <span class="text-xs font-bold text-slate-600">{{ event.status }}</span>
                     </div>
-                  </td>
-                  <td class="px-8 py-5 text-right">
-                    <button class="text-indigo-600 text-xs font-black hover:underline tracking-widest uppercase">Manage</button>
-                  </td>
+                    </td>
+
+                    <td class="px-8 py-5 text-right">
+                    <button class="text-indigo-600 text-xs font-black hover:underline tracking-widest uppercase">
+                        Manage
+                    </button>
+                    </td>
                 </tr>
-              </tbody>
-            </table>
-            <div class="px-8 py-5 bg-slate-50/30 border-t border-slate-50 flex justify-between items-center">
-              <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest">Showing 5 of 24 events</p>
-              <div class="flex gap-2">
-                <button class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-black text-slate-400 cursor-not-allowed">Prev</button>
-                <button class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-black text-slate-600 hover:border-indigo-300">Next</button>
-              </div>
-            </div>
-          </div>
+              </template>
+          </BaseTable>
         </section>
       </div>
   </div>

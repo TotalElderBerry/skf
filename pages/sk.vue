@@ -47,15 +47,7 @@ const councilInfo = ref({
                     </div>
                 </section>
 
-                <div class="flex space-x-8 border-b border-slate-200 mb-10">
-                    <NuxtLink 
-                    v-for="tab in tabs" :key="tab.label" :to="tab.to" @click="activeTab = tab.label"
-                    :class="['pb-4 text-sm font-bold tracking-wide transition-colors relative', activeTab === tab.label ? 'text-indigo-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-indigo-600' : 'text-slate-400 hover:text-slate-600']"
-                    >
-                    {{ tab.label }}
-                    </NuxtLink>
-                </div>
-                <NuxtPage :transition="{ name: 'fade', mode: 'out-in' }" :page-key="$route.path"/>
+                <NuxtPage />
             </main>
     </div>
     </div>
