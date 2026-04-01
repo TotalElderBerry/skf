@@ -9,9 +9,11 @@ import AdminSidebar from '../components/sidebar/AdminSidebar.vue';
   <div>
     <AdminSidebar />
     <AdminNavbar />
-    <transition name="slide-panel" mode="out-in">
-      <slot />
-    </transition>
+    <div class="mt-20">
+      <transition name="slide-panel" mode="out-in">
+        <slot />
+      </transition>
+    </div>
   </div>
 </template>
 

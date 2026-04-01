@@ -122,7 +122,7 @@ const federations = [
                 </td>
                 <td class="px-8 py-6 text-right">
                   <div class="flex justify-end gap-2 sm:opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button class="px-4 py-1.5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-600 hover:bg-indigo-600 hover:text-white transition-all">View</button>
+                    <NuxtLink to="/sk" class="px-4 py-1.5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-600 hover:bg-indigo-600 hover:text-white transition-all">View</NuxtLink to="/skf">
                     <button class="px-4 py-1.5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-600 hover:bg-indigo-600 hover:text-white transition-all">Edit</button>
                   </div>
                 </td>
