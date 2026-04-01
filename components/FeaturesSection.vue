@@ -1,8 +1,23 @@
 <script setup>
 import { ref } from 'vue'
 
-const activeCard = ref(null)
+const activeCard = ref(0) // Start with the first card active
+let interval = null
 
+const startCycle = () => {
+  interval = setInterval(() => {
+    // Cycles 0 -> 1 -> 2 -> 0...
+    activeCard.value = (activeCard.value + 1) % 3
+  }, 3000) // 3 seconds per card
+}
+
+onMounted(() => {
+  startCycle()
+})
+
+onUnmounted(() => {
+  if (interval) clearInterval(interval)
+})
 const toggleCard = (index) => {
   activeCard.value = activeCard.value === index ? null : index
 }
