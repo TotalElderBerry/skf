@@ -95,7 +95,7 @@ const headers = [
           variant="primary" 
           size="md" 
           class="relative z-10 shadow-xl shadow-slate-200"
-          @click="() => console.log('Import triggered')"
+          to="/add-existing"
         >
           <span class="mdi mdi-swap-horizontal mr-2"></span>
           Import Accounts
