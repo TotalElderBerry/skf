@@ -1,4 +1,9 @@
 <script setup>
+const headline = "Empowering Local SK Federations"
+const words = headline.split(' ')
+
+// Helper to calculate delay so words appear one by one
+const getDelay = (index) => `${index * 0.15}s`
 </script>
 
 
@@ -7,9 +12,19 @@
     
     <!-- Hero Headline & Subtext -->
     <div v-reveal class="max-w-4xl mb-12">
-      <h1 class="font-display text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-8">
-        Empowering Local <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-yellow-400">SK Federations</span>
+      <h1 class="font-display text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-8 overflow-hidden">
+        <span 
+          v-for="(word, index) in words" 
+          :key="index"
+          class="inline-block animate-blur-in opacity-0"
+          :style="{ animationDelay: getDelay(index) }"
+        >
+          <span v-if="word === 'SK' || word === 'Federations'" 
+                class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-yellow-400 mr-3">
+            {{ word }}
+          </span>
+          <span v-else class="mr-3">{{ word }}</span>
+        </span>
       </h1>
       <p class="font-body text-lg md:text-xl text-zinc-400 leading-relaxed max-w-2xl mx-auto mb-10">
         Smart solutions to simplify your council purchases, reporting, and youth development planning across the Philippines.
@@ -113,5 +128,27 @@
   :deep(.glass-card) {
     transform: scale(var(--mobile-scale, 0.95)) !important;
   }
+}
+
+@keyframes blurIn {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-blur-in {
+  animation: blurIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Optional: Add a subtle text-shadow to make it pop like the video */
+h1 span {
+  text-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 </style>
