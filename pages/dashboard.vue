@@ -21,75 +21,6 @@ const federations = [
 
 <template>
   <div class="min-h-screen bg-slate-50 font-body text-slate-800 antialiased overflow-x-hidden">
-    
-    <!-- SideNavBar (Authenticated / Light Mode) -->
-    <aside class="fixed left-0 top-0 h-full w-64 z-50 bg-white border-r border-slate-200 flex flex-col py-8 px-4 font-manrope text-sm font-medium">
-      <div class="mb-12 px-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <span class="mdi mdi-shield-check text-white text-xl font-bold"></span>
-          </div>
-          <div>
-            <h1 class="text-xl font-bold text-slate-900 tracking-tighter">SK Admin</h1>
-            <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Digital Command</p>
-          </div>
-        </div>
-      </div>
-      
-      <nav class="flex-1 space-y-1">
-        <a 
-          v-for="item in navItems" 
-          :key="item.name"
-          href="#" 
-          @click.prevent="activeItem = item.name"
-          :class="[
-            'flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200',
-            activeItem === item.name 
-              ? 'text-indigo-600 bg-indigo-50 font-bold border-r-2 border-indigo-600' 
-              : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
-          ]"
-        >
-          <span :class="['mdi', item.icon, 'text-xl']"></span>
-          <span>{{ item.name }}</span>
-        </a>
-      </nav>
-
-      <div class="mt-auto px-4 pt-8 border-t border-slate-100">
-        <button class="w-full py-3 px-4 bg-indigo-600 text-white rounded-xl font-bold text-xs uppercase tracking-widest active:scale-95 transition-all shadow-lg shadow-indigo-500/20 hover:bg-indigo-700">
-          New Account
-        </button>
-      </div>
-    </aside>
-
-    <!-- TopNavBar (Authenticated / Light Mode) -->
-    <header class="w-full sticky top-0 z-40 bg-white/80 backdrop-blur-xl h-20 ml-64 flex justify-between items-center px-8 border-b border-slate-200">
-      <div class="relative w-96">
-        <span class="mdi mdi-magnify absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl"></span>
-        <input 
-          class="w-full bg-slate-100 border-none rounded-full py-2.5 pl-12 pr-6 text-sm text-slate-900 focus:ring-2 focus:ring-indigo-500/50 placeholder:text-slate-400 transition-all font-medium" 
-          placeholder="Search federations or officials..." 
-          type="text"
-        />
-      </div>
-      <div class="flex items-center gap-6">
-        <button class="text-slate-400 hover:text-indigo-600 transition-colors active:scale-95">
-          <span class="mdi mdi-bell text-xl"></span>
-        </button>
-        <button class="text-slate-400 hover:text-indigo-600 transition-colors active:scale-95">
-          <span class="mdi mdi-cog text-xl"></span>
-        </button>
-        <div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
-        <div class="flex items-center gap-3 pl-2">
-          <div class="text-right hidden sm:block">
-            <p class="text-xs font-bold text-slate-900 leading-none">SK Admin</p>
-            <p class="text-[10px] text-indigo-600 font-bold mt-1">Super Administrator</p>
-          </div>
-          <div class="w-10 h-10 rounded-full border-2 border-indigo-100 p-0.5 overflow-hidden">
-            <img class="w-full h-full object-cover rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLK2UkJOKqLkjOU94dzy16qSs1Dj6TQvshEegUCs_-tDy8aGqjUNJnLOuY0Hv6xMgK0wpuTeHntjy5AKsqB97nuZZKXNn-rkpQTdNkgrWDiT3D4gH4KWCXrDBg0dhlL-xCMMlg_el7nI_hW0WyoCgTw1s1IuKdD_ilSv-givnwdB2xVaKkoGqPVFUrx5eV31YQ8WJ87G6K9SCL9kBpVe2qpTHTtSkEYH0wBK2BrplH_COBsuZAh0ZweCz0OQD6PwdP6-QRbJT6zDI5"/>
-          </div>
-        </div>
-      </div>
-    </header>
 
     <!-- Main Content (Authenticated / Light Mode) -->
     <main class="ml-64 p-8 lg:p-12 min-h-screen">
@@ -102,9 +33,9 @@ const federations = [
             Manage and monitor Sangguniang Kabataan federations nationwide. Oversee regional status, presidential appointments, and system compliance.
           </p>
         </div>
-        <button class="px-8 py-3 bg-indigo-600 text-white rounded-full font-headline font-extrabold tracking-tight active:scale-95 transition-all shadow-xl shadow-indigo-600/20 hover:bg-indigo-700">
+        <NuxtLink to="/create-sk" class="px-8 py-3 bg-indigo-600 text-white rounded-full font-headline font-extrabold tracking-tight active:scale-95 transition-all shadow-xl shadow-indigo-600/20 hover:bg-indigo-700">
           New Account
-        </button>
+        </NuxtLink>
       </section>
 
       <!-- Summary Stats Bento Grid -->
