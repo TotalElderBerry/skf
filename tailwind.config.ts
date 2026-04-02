@@ -13,54 +13,65 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       colors: {
-        // Unified Premium Design System Colors
+        // Tonal Architecture (Surfaces)
+        // Replacing the old #130b1a (dark purple) with Administrative Whites
+        surface: '#fbf9f8',                   // Global Canvas
+        'surface-low': '#f5f3f3',             // Sectioning
+        'surface-lowest': '#ffffff',          // Cards / Focal Points
+        'surface-highest': '#e4e2e2',         // Headers / Input Tracks
+        'surface-dim': '#dbd9d9',             // Table Headers
+
+        // Brand & Actions (The Administrative Blue)
         primary: {
-          DEFAULT: '#cc97ff',
-          dim: '#9c48ea',
-          light: '#e0c2ff',
+          DEFAULT: '#3947de',
+          container: '#5563f8',
+          'on-fixed': '#2a34a8',
         },
-        secondary: {
-          DEFAULT: '#fed01b',
-          dim: '#eec200',
-          light: '#ffdf5e',
+
+        // Typography Colors (On-Surface)
+        'on-surface': {
+          DEFAULT: '#1b1c1c',                // High-contrast text
+          variant: '#5c5e5e',                // Muted/Editorial metadata
         },
-        tertiary: {
-          DEFAULT: '#47c4ff',
-          dim: '#00a3ff',
+
+        // Semantic
+        error: {
+          container: '#fce8e8',
+          'on-container': '#d93025',
         },
-        surface: {
-          DEFAULT: '#130b1a',
-          variant: '#2d2137',
-          sunken: '#0f0814',
-          highest: '#2d2137',
-          high: '#261b30',
-          low: '#190f21',
-        },
-        background: '#070114',
-        "on-surface": {
-          DEFAULT: '#f6e6fd',
-          variant: '#b4a6bc',
-        },
-        "on-primary": '#47007c',
-        "on-secondary": '#594700',
-        error: '#ff6e84',
+
+        // The Ghost Border (15% opacity fallback)
         outline: {
-          variant: '#4f4456',
+          variant: 'rgba(198, 197, 216, 0.15)',
         }
       },
+
       fontFamily: {
-        headline: ["Manrope", "sans-serif"],
-        body: ["Inter", "sans-serif"],
-        display: ["Manrope", "sans-serif"],
+        // Updated to the dual-font strategy
+        headline: ['"Plus Jakarta Sans"', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
+
+      letterSpacing: {
+        tightest: '-0.02em', // For that "Masthead" look
       },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0) rotate(0)' },
-          '50%': { transform: 'translateY(-20px) rotate(1deg)' },
-        }
+
+      boxShadow: {
+        // The Ambient Shadow Rule
+        'ambient': '0 12px 32px rgba(27, 28, 28, 0.06)',
+      },
+
+      // Editorial Spacing
+      spacing: {
+        '12': '3rem',
+        '16': '4rem',
+      },
+
+      borderRadius: {
+        'button': '0.5rem',  // Per the button rule
+        '3xl': '1.5rem',     // Regular Cards
+        'panel': '3rem',     // Major Sections
       }
     },
   },
