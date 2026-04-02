@@ -1,10 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 import BaseTable from '../../../components/base/BaseTable.vue'
+import BaseButton from '../../../../components/base/BaseButton.vue'
 
 definePageMeta({
   layout: 'admin'
 })
+
+const route = useRoute()
+const id = route.params.id
 
 // Highlighted Event Data
 const nextEvent = ref({
@@ -186,9 +190,9 @@ const engagementStats = ref({
                     </td>
 
                     <td class="px-8 py-5 text-right">
-                    <button class="text-indigo-600 text-xs font-black hover:underline tracking-widest uppercase">
+                    <BaseButton variant="primary" size="sm" :to="`/sk/${id}/events/${event.id}`">
                         Manage
-                    </button>
+                    </BaseButton>
                     </td>
                 </tr>
               </template>
