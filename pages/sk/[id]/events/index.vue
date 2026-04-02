@@ -52,7 +52,7 @@ const engagementStats = ref({
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
           
           <section class="lg:col-span-8">
-            <h2 class="text-2xl font-black text-slate-900 font-headline mb-6">Next Event</h2>
+            <BaseHeading level="3" weight="black" tracking="tighter" class="mb-6">Next Event</BaseHeading>
             <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden flex flex-col min-h-[450px]">
               <div class="relative flex-grow overflow-hidden group">
                 <img :src="nextEvent.image" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -91,7 +91,7 @@ const engagementStats = ref({
           </section>
 
           <section class="lg:col-span-4">
-            <h2 class="text-2xl font-black text-slate-900 font-headline mb-6">Upcoming</h2>
+            <BaseHeading level="4" weight="black" tracking="tighter" class="mb-4">Upcoming</BaseHeading>
             <div class="space-y-4">
               <div v-for="event in upcomingEvents" :key="event.title" class="p-5 bg-white rounded-2xl border border-slate-200 hover:border-indigo-200 transition-all group">
                 <div class="flex gap-4">

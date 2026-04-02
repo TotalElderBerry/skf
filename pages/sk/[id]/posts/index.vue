@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import BaseHeading from '../../../../components/base/BaseHeading.vue'
+import BaseTextArea from '../../../../components/base/BaseTextArea.vue'
+import PostComposer from '../../../../components/shared/post/PostComposer.vue'
 
 definePageMeta({
   layout: 'admin'
@@ -40,50 +43,18 @@ const communityLeaders = ref([
         
         <section class="lg:col-span-8 space-y-8">
           <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-4">
-            <h2 class="text-2xl font-black text-slate-900 font-headline">Community Feed</h2>
+            <BaseHeading level="3" weight="black" tracking="tighter" class="mb-2">Community Feed</BaseHeading>
             <div class="flex gap-3">
-              <span class="bg-indigo-50 text-indigo-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest border border-indigo-100">
+              <BaseBadge variant="primary" size="sm">
                 Official Council
-              </span>
+              </BaseBadge>
             </div>
           </div>
 
-          <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 space-y-4">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0">
-                <img 
-                  src="https://i.pravatar.cc/150?u=9" 
-                  class="w-12 h-12 rounded-full border-2 border-white shadow-sm"
-                  alt="User"
-                />
-              </div>
-
-              <div class="flex-1">
-                <textarea 
-                  class="w-full bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-indigo-500/20 focus:bg-white rounded-2xl p-4 text-sm resize-none h-28 placeholder:text-slate-400 outline-none transition-all" 
-                  placeholder="What's the latest update for San Lorenzo?"
-                ></textarea>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between pt-4 border-t border-slate-50">
-              <div class="flex gap-1 pl-14"> <button class="p-2 rounded-xl hover:bg-slate-100 text-slate-500 transition-all">
-                  <span class="mdi mdi-image-outline text-xl text-indigo-500"></span>
-                </button>
-                <button class="p-2 rounded-xl hover:bg-slate-100 text-slate-500 transition-all">
-                  <span class="mdi mdi-video-outline text-xl text-indigo-500"></span>
-                </button>
-                <button class="p-2 rounded-xl hover:bg-slate-100 text-slate-500 transition-all">
-                  <span class="mdi mdi-poll text-xl text-indigo-500"></span>
-                </button>
-              </div>
-              
-            <BaseButton variant="primary">
-                Post Update
-            </BaseButton>
-
-            </div>
-          </div>
+          <PostComposer 
+            placeholder="What's the latest update for San Lorenzo?"
+            @post="null"
+          />
 
           <div class="space-y-8">
             <article v-for="post in posts" :key="post.id" class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">

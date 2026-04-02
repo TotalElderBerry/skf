@@ -22,8 +22,8 @@ const sizeClasses = {
 }
 
 const variantClasses = {
-  primary: 'bg-indigo-600 text-white shadow-xl shadow-indigo-600/20 hover:bg-indigo-700 hover:shadow-indigo-600/40',
-  secondary: 'bg-slate-100 text-slate-600 hover:bg-slate-200',
+  primary: 'bg-primary text-white shadow-xl shadow-indigo-600/20 hover:bg-indigo-700 hover:shadow-indigo-600/40',
+  secondary: 'bg-surface-lowest text-slate-600 hover:bg-slate-200',
   tertiary: 'bg-transparent text-indigo-600 hover:underline px-0 py-0 flex-none'
 }
 </script>

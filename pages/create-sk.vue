@@ -93,56 +93,45 @@ const handleSubmit = () => {
           <!-- Municipality + Barangay -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            <!-- Municipality -->
-            <div>
-              <label class="text-xs font-bold text-slate-400 uppercase">Municipality</label>
-              <select 
-                v-model="municipality"
-                class="w-full mt-2 bg-slate-100 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-500"
-              >
-                <option disabled value="">Select Municipality</option>
-                <option v-for="m in municipalities" :key="m">{{ m }}</option>
-              </select>
-            </div>
+            <BaseSelect 
+              v-model="municipality"
+              label="Municipality"
+              placeholder="Select Municipality"
+              :options="municipalities"
+            />
 
-            <!-- Barangay -->
-            <div>
-              <label class="text-xs font-bold text-slate-400 uppercase">Barangay</label>
-              <select 
-                v-model="barangay"
-                :disabled="!municipality"
-                class="w-full mt-2 bg-slate-100 rounded-xl px-4 py-3 disabled:opacity-50"
-              >
-                <option disabled value="">
-                  {{ municipality ? 'Select Barangay' : 'Select Municipality First' }}
-                </option>
-                <option v-for="b in barangays" :key="b">{{ b }}</option>
-              </select>
-            </div>
+            <BaseSelect 
+              v-model="barangay"
+              label="Barangay"
+              :placeholder="municipality ? 'Select Barangay' : 'Select Municipality First'"
+              :disabled="!municipality"
+              :options="barangays"
+            />
 
           </div>
 
           <!-- Email -->
-          <div>
-            <label class="text-xs font-bold text-slate-400 uppercase">Email Address</label>
-            <input 
-              v-model="email"
-              type="email"
-              placeholder="sk.council@barangay.gov.ph"
-              class="w-full mt-2 bg-slate-100 rounded-xl px-4 py-3 focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
+          <BaseInput 
+            v-model="email"
+            label="Email Address"
+            type="email"
+            icon="mdi-email-outline"
+            placeholder="sk.council@barangay.gov.ph"
+            variant="subtle"
+          />
 
           <!-- Password -->
           <div>
-            <label class="text-xs font-bold text-slate-400 uppercase">Default Password</label>
             <div class="flex gap-3 mt-2">
-              <input 
-                value="sk-default-123"
-                disabled
-                class="flex-1 bg-slate-100 rounded-xl px-4 py-3 font-mono"
+              <BaseInput 
+                v-model="password"
+                label="Default Password"
+                type="password"
+                icon="mdi-email-outline"
+                placeholder="password"
+                variant="subtle"
               />
-              <div class="px-4 py-3 bg-indigo-100 text-indigo-600 text-xs font-bold rounded-xl flex items-center">
+              <div class="px-4 py-3 mt-6 bg-indigo-100 text-indigo-600 text-xs font-bold rounded-xl flex items-center">
                 Auto
               </div>
             </div>

@@ -28,10 +28,12 @@ const headers = [
       
       <section class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-          <h2 class="text-4xl font-headline font-black tracking-tighter text-slate-900 mb-2">SK Accounts</h2>
-          <p class="text-slate-500 max-w-lg leading-relaxed font-medium">
+          <BaseHeading level="2" weight="black" tracking="tighter" class="mb-2">
+            SK Accounts
+          </BaseHeading>
+          <BaseText size="md" variant="muted" weight="medium" class="max-w-lg">
             Manage and monitor Sangguniang Kabataan federations nationwide. Oversee regional status, presidential appointments, and system compliance.
-          </p>
+          </BaseText>
         </div>
         <BaseButton 
           to="/create-sk" 
@@ -83,10 +85,10 @@ const headers = [
             <span class="mdi mdi-information-outline text-2xl"></span>
           </div>
           <div>
-            <h4 class="text-xl font-headline font-black text-slate-900 tracking-tight">Import Existing Accounts</h4>
-            <p class="text-sm text-slate-500 max-w-xl font-medium leading-relaxed mt-1">
+            <BaseHeading level="4" weight="black" tracking="tight" class="text-xl font-headline font-black text-slate-900 tracking-tight">Import Existing Accounts</BaseHeading>
+            <BaseText size="md" variant="muted" weight="medium" class="text-sm text-slate-500 max-w-xl font-medium leading-relaxed mt-1">
               There are existing SKLoud accounts in your area. Add them to your Federation to sync data and permissions automatically.
-            </p>
+            </BaseText>
           </div>
         </div>
 
@@ -103,7 +105,7 @@ const headers = [
 
       <section class="shadow-sm overflow-hidden mb-12">
         <div class="px-8 py-2 flex justify-between items-center mb-4">
-          <h4 class="font-headline font-bold text-lg text-slate-900">SK Councils Directory</h4>
+          <BaseHeading level="4" weight="black" tracking="tight" class="text-xl font-headline font-black text-slate-900 tracking-tight">SK Councils Directory</BaseHeading>
           <div class="flex gap-2">
             <BaseIconButton 
               icon="mdi-filter-variant" 

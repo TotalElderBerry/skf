@@ -27,12 +27,12 @@ const councilInfo = ref({
                 <section class="mb-12">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
                     <div>
-                        <h1 class="text-4xl font-black tracking-tight text-slate-900 mb-2 font-headline">
-                        {{ councilInfo.name }}
-                        </h1>
-                        <p class="text-slate-500 max-w-xl leading-relaxed font-medium">
-                        {{ councilInfo.description }}
-                        </p>
+                        <BaseHeading level="2" weight="black" tracking="tighter" class="mb-2">
+                            {{ councilInfo.name }}
+                        </BaseHeading>
+                        <BaseText size="md" variant="muted" weight="medium">
+                            {{ councilInfo.description }}
+                        </BaseText>
                     </div>
                     <div class="flex gap-4">
                         <div class="bg-white px-6 py-4 rounded-2xl shadow-sm border border-slate-200 min-w-[140px]">

@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import BaseTable from '../../../components/base/BaseTable.vue'
+import BaseHeading from '../../../../components/base/BaseHeading.vue'
 
 definePageMeta({
   layout: 'admin'
@@ -36,16 +37,20 @@ const recentRegistrations = ref([
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         
         <section class="lg:col-span-8">
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-            <h2 class="text-2xl font-black text-slate-900 font-headline">Constituent Directory</h2>
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 mt-4">
+            <BaseHeading level="3" weight="black" tracking="tighter" class="mb-2">Constituent Directory</BaseHeading>
             <div class="flex gap-3 w-full md:w-auto">
               <div class="relative flex-grow">
-                <span class="mdi mdi-magnify absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></span>
-                <input class="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none w-full md:w-64 transition-all" placeholder="Search members..." type="text"/>
+                <BaseInput
+                  v-model="searchQuery"
+                  placeholder="Search members..."
+                  icon="mdi-magnify"
+                />
               </div>
-              <button class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all">
-                <span class="mdi mdi-filter-variant"></span>
-              </button>
+              <BaseIconButton 
+                icon="mdi-filter-variant" 
+                variant="secondary" 
+              />
             </div>
           </div>
 
