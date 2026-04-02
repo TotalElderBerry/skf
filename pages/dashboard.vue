@@ -105,12 +105,15 @@ const headers = [
         <div class="px-8 py-2 flex justify-between items-center mb-4">
           <h4 class="font-headline font-bold text-lg text-slate-900">SK Councils Directory</h4>
           <div class="flex gap-2">
-            <button class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
-              <span class="mdi mdi-filter-variant text-xl"></span>
-            </button>
-            <button class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
-              <span class="mdi mdi-download text-xl"></span>
-            </button>
+            <BaseIconButton 
+              icon="mdi-filter-variant" 
+              variant="secondary" 
+            />
+
+            <BaseIconButton 
+              icon="mdi-download" 
+              variant="secondary" 
+            />
           </div>
         </div>
 

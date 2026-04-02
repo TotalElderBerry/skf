@@ -1,5 +1,10 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import FaqAndCtaSection from '../components/features/landing/FaqAndCtaSection.vue';
+import PricingSection from '../components/features/landing/PricingSection.vue';
+import CapabilitiesSection from '../components/features/landing/CapabilitiesSection.vue';
+import FeaturesSection from '../components/features/landing/FeaturesSection.vue';
+import HeroSection from '../components/features/landing/HeroSection.vue';
 
 // Animations hooks for Vue
 const isMounted = ref(false)

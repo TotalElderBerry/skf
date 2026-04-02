@@ -1,4 +1,6 @@
 <script setup>
+import PhilippinesMap from './PhilippinesMap.vue';
+
 const headline = "Empowering Local SK Federations"
 const words = headline.split(' ')
 

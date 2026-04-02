@@ -1,11 +1,15 @@
+<script setup>
+const searchQuery = ref('');
+</script>
 <template>
   <header class="fixed top-0 right-0 left-0 z-40 bg-white/80 backdrop-blur-xl h-20 ml-64 flex justify-between items-center px-8 border-b border-slate-100">
     
     <div class="relative w-72 lg:w-96">
-      <span class="mdi mdi-magnify absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></span>
-      <input 
-        class="w-full bg-slate-100/50 border-transparent rounded-full py-2 pl-12 pr-6 text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 transition-all"
+      <BaseInput 
+        v-model="searchQuery"
+        icon="mdi-magnify"
         placeholder="Search everything..."
+        variant="subtle"
       />
     </div>
 

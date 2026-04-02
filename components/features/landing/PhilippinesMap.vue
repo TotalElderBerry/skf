@@ -1,6 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 import { regions } from '~/data/regions.js'
+import MapGrid from './MapGrid.vue';
+import MapLandmass from './MapLandmass.vue';
+import MapPin from './MapPin.vue';
+import MapTooltip from './MapTooltip.vue';
 
 const activeRegion = ref(null)
 </script>

@@ -8,7 +8,7 @@ const startCycle = () => {
   interval = setInterval(() => {
     // Cycles 0 -> 1 -> 2 -> 0...
     activeCard.value = (activeCard.value + 1) % 3
-  }, 3000) // 3 seconds per card
+  }, 1500) // 1.5 seconds per card
 }
 
 onMounted(() => {

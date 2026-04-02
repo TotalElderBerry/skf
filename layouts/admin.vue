@@ -1,11 +1,11 @@
 <script setup>
-import AdminNavbar from '../components/navbar/AdminNavbar.vue';
-import AdminSidebar from '../components/sidebar/AdminSidebar.vue';
+import AdminSidebar from '../components/shared/sidebar/AdminSidebar.vue';
+import AdminNavbar from '../components/shared/navbar/AdminNavbar.vue';
 
 
 </script>
 
-<template>
+<template>  
   <div>
     <AdminSidebar />
     <AdminNavbar />
