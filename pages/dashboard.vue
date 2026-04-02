@@ -18,7 +18,6 @@ const headers = [
   'Federation Name',
   'President',
   'Status',
-  '' // Actions column
 ]
 </script>
 
@@ -144,10 +143,12 @@ const headers = [
                   </div>
                 </td>
                 <td class="px-8 py-6">
-                  <div class="flex items-center gap-2">
-                    <span :class="['w-2 h-2 rounded-full', fed.status === 'Active' ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500 shadow-glow']"></span>
-                    <span :class="['text-xs font-bold', fed.status === 'Active' ? 'text-emerald-600' : 'text-amber-600']">{{ fed.status }}</span>
-                  </div>
+                  <BaseBadge 
+                    :variant="fed.status === 'Active' ? 'success' : 'warning'" 
+                    dot
+                  >
+                    {{ fed.status }}
+                  </BaseBadge>
                 </td>
                 <td class="px-8 py-6 text-right">
                   <div class="flex justify-end gap-2 lg:opacity-0 group-hover:opacity-100 transition-opacity">

@@ -168,16 +168,21 @@ const engagementStats = ref({
                     </td>
 
                     <td class="px-8 py-5">
-                    <span class="px-3 py-1 rounded-lg text-[10px] font-black bg-indigo-50 text-indigo-600 uppercase tracking-wider">
+                    <BaseBadge 
+                        variant="primary" 
+                        mode="solid"
+                    >
                         {{ event.category }}
-                    </span>
+                    </BaseBadge>
                     </td>
 
                     <td class="px-8 py-5">
-                    <div class="flex items-center gap-2">
-                        <div :class="['w-2 h-2 rounded-full', event.statusColor]"></div>
-                        <span class="text-xs font-bold text-slate-600">{{ event.status }}</span>
-                    </div>
+                    <BaseBadge 
+                        :variant="event.status === 'Upcoming' ? 'warning' : event.status === 'Ongoing' ? 'primary' : 'secondary'" 
+                        dot
+                    >
+                        {{ event.status }}
+                    </BaseBadge>
                     </td>
 
                     <td class="px-8 py-5 text-right">
