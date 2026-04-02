@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const activeItem = ref('Accounts')
+const activeItem = ref('Dashboard')
 
 const navItems = [
   { name: 'Dashboard', icon: 'mdi-view-dashboard', to: '/dashboard' },

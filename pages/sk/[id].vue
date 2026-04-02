@@ -5,9 +5,16 @@ definePageMeta({
   layout: 'admin'
 })
 
+const route = useRoute()
+const id = computed(() => route.params.id)
+
 // Navigation State
 const activeTab = ref('Events')
-const tabs = [{label: 'Events', to: "events"}, {label: 'Users', to: "users"}, {label: 'Posts', to: "posts"}]
+const tabs = [
+    {label: 'Events', to: `/sk/${id.value}/events`}, 
+    {label: 'Users', to: `/sk/${id.value}/users`}, 
+    {label: 'Posts', to: `/sk/${id.value}/posts`}
+]
 
 // Header & Overview Data
 const councilInfo = ref({
