@@ -83,9 +83,9 @@ const recentRegistrations = ref([
                             </td>
 
                             <td class="px-8 py-5 text-right">
-                            <button class="text-indigo-600 text-xs font-black hover:underline tracking-widest uppercase">
-                                Manage
-                            </button>
+                            <BaseButton to="users/1" size="sm">
+                              Manage
+                            </BaseButton>
                             </td>
                         </tr>
                     </template>
