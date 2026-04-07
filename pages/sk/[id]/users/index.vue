@@ -87,9 +87,9 @@ const recentRegistrations = ref([
                             </td>
 
                             <td class="px-8 py-5 text-right">
-                              <BaseButton variant="primary" size="sm">
-                                  Manage
-                              </BaseButton>
+                            <BaseButton to="users/1" size="sm">
+                              Manage
+                            </BaseButton>
                             </td>
                         </tr>
                     </template>
