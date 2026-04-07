@@ -26,87 +26,79 @@ const headers = [
 
     <main class="lg:ml-64 p-8 lg:p-12 min-h-screen">
       
-      <section class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-        <div>
-          <BaseHeading level="2" weight="black" tracking="tighter" class="mb-2">
-            SK Accounts
-          </BaseHeading>
-          <BaseText size="md" variant="muted" weight="medium" class="max-w-lg">
-            Manage and monitor Sangguniang Kabataan federations nationwide. Oversee regional status, presidential appointments, and system compliance.
-          </BaseText>
-        </div>
-        <BaseButton 
-          to="/create-sk" 
-          size="md" 
-          variant="primary"
-        >
-          New Account
-        </BaseButton>
-      </section>
+      <BasePageHeader 
+        title="SK Accounts" 
+        subtitle="Manage and monitor Sangguniang Kabataan federations nationwide"
+      >
+        <template #actions>
+          <BaseButton 
+            to="/create-sk" 
+            size="md" 
+            variant="primary"
+          >
+            New Account
+          </BaseButton>
+        </template>
+      </BasePageHeader>
 
       <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-          <div class="absolute -right-4 -bottom-4 text-slate-100 group-hover:scale-110 transition-transform duration-500">
-            <span class="mdi mdi-account-group text-8xl"></span>
-          </div>
-          <p class="text-amber-600 text-[10px] font-bold uppercase tracking-widest mb-4">Total SK Accounts</p>
-          <div class="flex items-baseline gap-2">
-            <h3 class="text-4xl font-headline font-bold text-slate-900">1,248</h3>
-            <span class="text-emerald-600 text-xs font-bold font-body">+12%</span>
-          </div>
-        </div>
-        <div class="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-          <div class="absolute -right-4 -bottom-4 text-slate-100 group-hover:scale-110 transition-transform duration-500">
-            <span class="mdi mdi-account text-8xl"></span>
-          </div>
-          <p class="text-indigo-600 text-[10px] font-bold uppercase tracking-widest mb-4">Total Users</p>
-          <div class="flex items-baseline gap-2">
-            <h3 class="text-4xl font-headline font-bold text-slate-900">15,640</h3>
-            <span class="text-slate-400 text-xs font-bold font-body">+8%</span>
-          </div>
-        </div>
-        <div class="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-          <div class="absolute -right-4 -bottom-4 text-slate-100 group-hover:scale-110 transition-transform duration-500">
-            <span class="mdi mdi-check-circle text-8xl"></span>
-          </div>
-          <p class="text-cyan-600 text-[10px] font-bold uppercase tracking-widest mb-4">Active Federations</p>
-          <div class="flex items-baseline gap-2">
-            <h3 class="text-4xl font-headline font-bold text-slate-900">1,120</h3>
-            <span class="text-xs font-bold text-slate-400 font-body">90%</span>
-          </div>
-        </div>
+        <BaseStatsCard 
+          label="Total SK Accounts"
+          value="1,248"
+          trend="+12%"
+          icon="mdi-account-group"
+          variant="white"
+        />
+        <BaseStatsCard 
+          label="Total Users"
+          value="15,640"
+          trend="+8%"
+          icon="mdi-account"
+          variant="white"
+        />
+        <BaseStatsCard 
+          label="Active Federations"
+          value="1,120"
+          trend="90%"
+          icon="mdi-check-circle"
+          variant="white"
+        />
       </section>
 
-      <section class="bg-white border border-slate-200 rounded-[2rem] p-8 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-48 h-48 bg-indigo-50/40 rounded-full blur-3xl -z-0"></div>
-        
-        <div class="flex items-center space-x-6 relative z-10">
-          <div class="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
-            <span class="mdi mdi-information-outline text-2xl"></span>
+      <BaseCard variant="white" padding="p-8" class="mb-12">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-48 h-48 bg-indigo-50/40 rounded-full blur-3xl -z-0"></div>
+          
+          <div class="flex items-center space-x-6 relative z-10">
+            <div class="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
+              <span class="mdi mdi-information-outline text-2xl"></span>
+            </div>
+            <div>
+              <BaseHeading level="4" weight="black" tracking="tight" class="text-xl">Import Existing Accounts</BaseHeading>
+              <BaseText size="sm" variant="muted" class="max-w-xl mt-1">
+                There are existing SKLoud accounts in your area. Add them to your Federation to sync data and permissions automatically.
+              </BaseText>
+            </div>
           </div>
-          <div>
-            <BaseHeading level="4" weight="black" tracking="tight" class="text-xl font-headline font-black text-slate-900 tracking-tight">Import Existing Accounts</BaseHeading>
-            <BaseText size="md" variant="muted" weight="medium" class="text-sm text-slate-500 max-w-xl font-medium leading-relaxed mt-1">
-              There are existing SKLoud accounts in your area. Add them to your Federation to sync data and permissions automatically.
-            </BaseText>
-          </div>
-        </div>
 
-        <BaseButton 
-          variant="primary" 
-          size="md" 
-          class="relative z-10 shadow-xl shadow-slate-200"
-          to="/add-existing"
+          <BaseButton 
+            variant="primary" 
+            size="md" 
+            class="relative z-10 shadow-xl shadow-slate-200"
+            to="/add-existing"
+          >
+            <span class="mdi mdi-swap-horizontal mr-2"></span>
+            Import Accounts
+          </BaseButton>
+        </div>
+      </BaseCard>
+
+      <section class="mb-12">
+        <BasePageHeader 
+          title="SK Councils Directory" 
+          subtitle="Directory of all registered SK councils"
         >
-          <span class="mdi mdi-swap-horizontal mr-2"></span>
-          Import Accounts
-        </BaseButton>
-      </section>
-
-      <section class="shadow-sm overflow-hidden mb-12">
-        <div class="px-8 py-2 flex justify-between items-center mb-4">
-          <BaseHeading level="4" weight="black" tracking="tight" class="text-xl font-headline font-black text-slate-900 tracking-tight">SK Councils Directory</BaseHeading>
-          <div class="flex gap-2">
+          <template #actions>
             <BaseIconButton 
               icon="mdi-filter-variant" 
               variant="secondary" 
@@ -116,8 +108,8 @@ const headers = [
               icon="mdi-download" 
               variant="secondary" 
             />
-          </div>
-        </div>
+          </template>
+        </BasePageHeader>
 
         <div class="overflow-x-auto">
           <BaseTable

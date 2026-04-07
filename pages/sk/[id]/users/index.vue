@@ -37,10 +37,12 @@ const recentRegistrations = ref([
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         
         <section class="lg:col-span-8">
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 mt-4">
-            <BaseHeading level="3" weight="black" tracking="tighter" class="mb-2">Constituent Directory</BaseHeading>
-            <div class="flex gap-3 w-full md:w-auto">
-              <div class="relative flex-grow">
+          <BasePageHeader 
+            title="Constituent Directory" 
+            subtitle="Manage and view residents of San Lorenzo"
+          >
+            <template #actions>
+              <div class="relative flex-grow md:w-64">
                 <BaseInput
                   v-model="searchQuery"
                   placeholder="Search members..."
@@ -51,8 +53,8 @@ const recentRegistrations = ref([
                 icon="mdi-filter-variant" 
                 variant="secondary" 
               />
-            </div>
-          </div>
+            </template>
+          </BasePageHeader>
 
           <div class="">
                 <BaseTable 
@@ -76,16 +78,18 @@ const recentRegistrations = ref([
                             </td>
 
                             <td class="px-8 py-5">
-                            <div class="flex items-center gap-2">
-                                <div :class="['w-2 h-2 rounded-full', person.statusColor]"></div>
-                                <span class="text-xs font-bold text-slate-600">{{ person.status }}</span>
-                            </div>
+                                <BaseBadge 
+                                    :variant="person.status === 'Active' ? 'success' : 'secondary'"
+                                    dot
+                                >
+                                    {{ person.status }}
+                                </BaseBadge>
                             </td>
 
                             <td class="px-8 py-5 text-right">
-                            <button class="text-indigo-600 text-xs font-black hover:underline tracking-widest uppercase">
-                                Manage
-                            </button>
+                              <BaseButton variant="primary" size="sm">
+                                  Manage
+                              </BaseButton>
                             </td>
                         </tr>
                     </template>
@@ -97,18 +101,20 @@ const recentRegistrations = ref([
           <div>
             <h2 class="text-2xl font-black text-slate-900 font-headline mb-6">Overview</h2>
             <div class="space-y-4">
-              <div class="p-6 bg-indigo-600 rounded-3xl text-white relative overflow-hidden group shadow-lg shadow-indigo-200">
-                <span class="mdi mdi-account-group absolute -right-4 -bottom-4 text-7xl text-white/10 group-hover:scale-110 transition-transform"></span>
-                <p class="text-indigo-100 text-[10px] font-black uppercase tracking-widest mb-1">Total Population</p>
-                <h4 class="text-4xl font-black">{{ constituentStats.total }}</h4>
-                <p class="text-indigo-200 text-[10px] font-bold mt-2 italic">{{ constituentStats.growth }} from last month</p>
-              </div>
+              <BaseStatsCard 
+                label="Total Population"
+                :value="constituentStats.total"
+                :trend="`${constituentStats.growth} from last month`"
+                icon="mdi-account-group"
+                variant="primary"
+              />
 
-              <div class="p-6 bg-white rounded-3xl border border-slate-200 relative overflow-hidden group">
-                <span class="mdi mdi-lightning-bolt absolute -right-4 -bottom-4 text-7xl text-slate-50 group-hover:scale-110 transition-transform"></span>
-                <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Active Today</p>
-                <h4 class="text-3xl font-black text-slate-900">{{ constituentStats.activeToday }}</h4>
-              </div>
+              <BaseStatsCard 
+                label="Active Today"
+                :value="constituentStats.activeToday"
+                icon="mdi-lightning-bolt"
+                variant="white"
+              />
             </div>
           </div>
         </section>

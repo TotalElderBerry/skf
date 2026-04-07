@@ -54,39 +54,40 @@ const handleSubmit = () => {
   <main class="ml-64 p-8 lg:p-12 min-h-screen bg-slate-50">
 
     <!-- Header -->
-    <div class="mb-10">
-      <h1 class="text-4xl font-black text-slate-900 mb-2">
-        Add New <span class="text-indigo-600">SK Council</span>
-      </h1>
-      <p class="text-slate-500 max-w-xl">
-        Register a new Sangguniang Kabataan council. Ensure correct municipality and barangay pairing.
-      </p>
-    </div>
+    <BasePageHeader 
+      title="Add New SK Council" 
+      subtitle="Register a new Sangguniang Kabataan council. Ensure correct municipality and barangay pairing."
+    />
 
     <!-- Form Container -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
       <!-- Left Info Panel -->
       <div class="space-y-6">
-        <div class="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
-          <h3 class="font-bold text-indigo-700 mb-2">Administrative Notice</h3>
-          <p class="text-sm text-indigo-600">
-            Newly created accounts will receive an email invitation to complete setup.
-          </p>
-        </div>
+        <BaseCard variant="surface" border padding="p-6">
+          <div class="flex items-start gap-4">
+            <span class="mdi mdi-information text-2xl text-indigo-600"></span>
+            <div>
+              <h3 class="font-bold text-indigo-700 mb-1">Administrative Notice</h3>
+              <p class="text-sm text-indigo-600 leading-tight">
+                Newly created accounts will receive an email invitation to complete setup.
+              </p>
+            </div>
+          </div>
+        </BaseCard>
 
-        <div class="p-6 bg-white rounded-2xl border">
-          <h4 class="font-bold text-slate-800 mb-2">Guidelines</h4>
-          <ul class="text-sm text-slate-500 space-y-2">
-            <li>• Select municipality first</li>
-            <li>• Barangay will auto-load</li>
-            <li>• Use official email if possible</li>
+        <BaseCard variant="white" border padding="p-6">
+          <h4 class="font-bold text-slate-800 mb-3">Registration Guidelines</h4>
+          <ul class="text-sm text-slate-500 space-y-3">
+            <li class="flex items-center gap-2"><span class="mdi mdi-check-circle-outline text-emerald-500"></span> Select municipality first</li>
+            <li class="flex items-center gap-2"><span class="mdi mdi-check-circle-outline text-emerald-500"></span> Barangay will auto-load</li>
+            <li class="flex items-center gap-2"><span class="mdi mdi-check-circle-outline text-emerald-500"></span> Use official email if possible</li>
           </ul>
-        </div>
+        </BaseCard>
       </div>
 
       <!-- Form -->
-      <div class="lg:col-span-2 bg-white rounded-3xl p-10 border shadow-sm">
+      <BaseCard variant="white" elevation="sm" padding="p-10" class="lg:col-span-2">
 
         <form @submit.prevent="handleSubmit" class="space-y-8">
 
@@ -139,24 +140,26 @@ const handleSubmit = () => {
 
           <!-- Actions -->
           <div class="flex justify-end gap-4 pt-6">
-            <button 
+            <BaseButton 
               type="button"
-              class="px-6 py-3 bg-slate-100 rounded-xl font-bold text-slate-600 hover:bg-slate-200"
+              variant="secondary"
+              size="md"
+              @click="$router.back()"
             >
               Cancel
-            </button>
+            </BaseButton>
 
-            <button 
+            <BaseButton 
               type="submit"
-              class="px-8 py-3 bg-indigo-600 text-white rounded-xl font-bold shadow-lg hover:bg-indigo-700"
+              variant="primary"
+              size="md"
             >
               Create Account
-            </button>
+            </BaseButton>
           </div>
 
         </form>
-
-      </div>
+      </BaseCard>
 
     </div>
 

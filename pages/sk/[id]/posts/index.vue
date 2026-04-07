@@ -42,14 +42,16 @@ const communityLeaders = ref([
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         
         <section class="lg:col-span-8 space-y-8">
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-4">
-            <BaseHeading level="3" weight="black" tracking="tighter" class="mb-2">Community Feed</BaseHeading>
-            <div class="flex gap-3">
-              <BaseBadge variant="primary" size="sm">
+          <BasePageHeader 
+            title="Community Feed" 
+            subtitle="Connect and share updates with the San Lorenzo community"
+          >
+            <template #actions>
+              <BaseBadge variant="primary" mode="solid">
                 Official Council
               </BaseBadge>
-            </div>
-          </div>
+            </template>
+          </BasePageHeader>
 
           <PostComposer 
             placeholder="What's the latest update for San Lorenzo?"
@@ -98,13 +100,13 @@ const communityLeaders = ref([
           <div>
             <h2 class="text-2xl font-black text-slate-900 font-headline mb-6">Trending</h2>
             <div class="space-y-4">
-              <div v-for="topic in trendingTopics" :key="topic.tag" class="p-5 bg-white rounded-2xl border border-slate-200 hover:border-indigo-200 transition-all group cursor-pointer">
-                <div class="flex flex-col">
-                  <span class="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-1">{{ topic.tag }}</span>
-                  <h4 class="font-bold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors">{{ topic.title }}</h4>
-                  <p class="text-[10px] text-slate-400 font-bold mt-1 uppercase tracking-tight">{{ topic.count }} this week</p>
-                </div>
-              </div>
+              <BaseSidebarItem 
+                v-for="topic in trendingTopics" 
+                :key="topic.tag"
+                :label="topic.tag"
+                :title="topic.title"
+                :subtitle="`${topic.count} this week`"
+              />
               <button class="w-full py-4 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 font-bold text-xs uppercase tracking-widest hover:border-indigo-300 hover:text-indigo-600 transition-all">
                 View All Insights
               </button>

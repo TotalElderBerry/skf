@@ -97,18 +97,14 @@ const engagementStats = ref({
           <section class="lg:col-span-4">
             <BaseHeading level="4" weight="black" tracking="tighter" class="mb-4">Upcoming</BaseHeading>
             <div class="space-y-4">
-              <div v-for="event in upcomingEvents" :key="event.title" class="p-5 bg-white rounded-2xl border border-slate-200 hover:border-indigo-200 transition-all group">
-                <div class="flex gap-4">
-                  <div class="w-12 h-12 bg-indigo-50 rounded-xl flex flex-col items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                    <span class="text-[9px] font-black">{{ event.month }}</span>
-                    <span class="text-lg font-black leading-none">{{ event.day }}</span>
-                  </div>
-                  <div class="flex-1">
-                    <h4 class="font-bold text-slate-800 text-sm">{{ event.title }}</h4>
-                    <p class="text-[10px] text-slate-400 font-bold mt-1 uppercase tracking-tight">{{ event.location }}</p>
-                  </div>
-                </div>
-              </div>
+              <BaseSidebarItem 
+                v-for="event in upcomingEvents" 
+                :key="event.title"
+                :dateMonth="event.month"
+                :dateDay="event.day"
+                :title="event.title"
+                :subtitle="event.location"
+              />
               <button class="w-full py-4 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 font-bold text-xs uppercase tracking-widest hover:border-indigo-300 hover:text-indigo-600 transition-all">
                 + Schedule New
               </button>
@@ -119,35 +115,45 @@ const engagementStats = ref({
         <section>
           <h2 class="text-2xl font-black text-slate-900 font-headline mb-8">Engagement Overview</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="p-8 bg-indigo-50 rounded-3xl border border-indigo-100 relative overflow-hidden group">
-              <span class="mdi mdi-account-star absolute -right-4 -bottom-4 text-8xl text-indigo-100 group-hover:scale-110 transition-transform"></span>
-              <p class="text-indigo-400 text-[10px] font-black uppercase tracking-widest mb-1 relative">Volunteers</p>
-              <h4 class="text-4xl font-black text-indigo-700 relative">{{ engagementStats.totalVolunteers }}</h4>
-            </div>
-            <div class="p-8 bg-white rounded-3xl border border-slate-200 relative overflow-hidden group">
-              <span class="mdi mdi-trending-up absolute -right-4 -bottom-4 text-8xl text-slate-50 group-hover:scale-110 transition-transform"></span>
-              <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1 relative">Trend</p>
-              <h4 class="text-4xl font-black text-emerald-600 relative">{{ engagementStats.attendanceTrend }}</h4>
-            </div>
-            <div class="p-8 bg-white rounded-3xl border border-slate-200 relative overflow-hidden group">
-              <span class="mdi mdi-comment-check absolute -right-4 -bottom-4 text-8xl text-slate-50 group-hover:scale-110 transition-transform"></span>
-              <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1 relative">Satisfaction</p>
-              <h4 class="text-4xl font-black text-slate-900 relative">{{ engagementStats.citizenFeedback }}</h4>
-            </div>
+            <BaseStatsCard 
+              label="Volunteers"
+              :value="engagementStats.totalVolunteers"
+              icon="mdi-account-star"
+              variant="white"
+            />
+            <BaseStatsCard 
+              label="Trend"
+              :value="engagementStats.attendanceTrend"
+              icon="mdi-trending-up"
+              variant="white"
+            />
+            <BaseStatsCard 
+              label="Satisfaction"
+              :value="engagementStats.citizenFeedback"
+              icon="mdi-comment-check"
+              variant="white"
+            />
           </div>
         </section>
 
         <section>
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-            <h2 class="text-2xl font-black text-slate-900 font-headline">Full Event List</h2>
-            <div class="flex gap-3">
-              <div class="relative">
-                <span class="mdi mdi-magnify absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></span>
-                <input class="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none w-64" placeholder="Search events..." type="text"/>
+          <BasePageHeader 
+            title="Full Event List" 
+            subtitle="Explore all past and future community activities"
+          >
+            <template #actions>
+              <div class="relative flex-grow md:w-64">
+                <BaseInput 
+                  placeholder="Search events..." 
+                  icon="mdi-magnify"
+                />
               </div>
-              <button class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50">Filter</button>
-            </div>
-          </div>
+              <BaseIconButton 
+                icon="mdi-filter-variant" 
+                variant="secondary" 
+              />
+            </template>
+          </BasePageHeader>
 
           <BaseTable 
               :headers="['Event Detail', 'Date', 'Category', 'Status']" 
