@@ -12,6 +12,7 @@ const id = computed(() => route.params.id)
 const activeTab = ref('Events')
 const tabs = [
     {label: 'Events', to: `/sk/${id.value}/events`}, 
+    {label: 'Calendar', to: `/sk/${id.value}/calendar`},
     {label: 'Users', to: `/sk/${id.value}/users`}, 
     {label: 'Posts', to: `/sk/${id.value}/posts`}
 ]

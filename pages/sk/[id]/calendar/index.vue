@@ -34,14 +34,16 @@ const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 </script>
 
 <template>
-  <div class="p-6 space-y-8 bg-background">
+  <div class="">
     <div class="flex flex-col lg:flex-row gap-6 h-full items-start">
       <!-- Left: Calendar Section -->
       <div class="flex-[2] w-full space-y-6">
         <div class="flex items-center justify-between">
           <div>
-            <h1 class="text-3xl font-extrabold text-on-surface tracking-tight font-headline">Events Calendar</h1>
-            <p class="text-on-surface-variant text-sm opacity-70 font-body">Managing local governance activities for October 2023</p>
+            <BasePageHeader 
+              title="Events Calendar" 
+              subtitle="Managing local governance activities for October 2023"
+            />
           </div>
           <div class="flex bg-surface-container-low p-1 rounded-xl">
             <button class="px-4 py-2 bg-surface-container-lowest shadow-sm rounded-lg text-xs font-bold text-primary uppercase tracking-widest font-headline">Month</button>
@@ -63,7 +65,7 @@ const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
             </div>
           </div>
           <!-- Calendar Grid -->
-          <div class="grid grid-cols-7 gap-px bg-surface-container-high">
+          <div class="grid grid-cols-7 gap-px bg-surface-container-low">
             <div 
               v-for="(day, idx) in days" 
               :key="idx"
