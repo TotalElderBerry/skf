@@ -1,34 +1,67 @@
 <script setup>
+import { 
+  format, 
+  startOfMonth, 
+  endOfMonth, 
+  startOfWeek, 
+  endOfWeek, 
+  eachDayOfInterval, 
+  isSameMonth, 
+  isSameDay, 
+  addMonths, 
+  subMonths 
+} from 'date-fns'
+
 const route = useRoute()
 const id = route.params.id
 
-// Mock data for the calendar
-const days = [
-  { date: 28, prevMonth: true },
-  { date: 29, prevMonth: true },
-  { date: 30, prevMonth: true },
-  { date: 1, currentMonth: true },
-  { date: 2, currentMonth: true, event: { title: 'Town Hall', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCHXG6H_Yp-n6h1y-f9h_9I_R6h6e7e7y-h8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5A6B7C8D9E0F1G2H3I4J5K6L7M8N9O0P1Q2R3S4T5U6V7W8X9Y0Z1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T1U2V3W4X5Y6Z7A8B9C0' } },
-  { date: 3, currentMonth: true },
-  { date: 4, currentMonth: true },
-  { date: 5, currentMonth: true },
-  { date: 6, currentMonth: true, event: { title: 'Budget Audit', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=400' } },
-  { date: 7, currentMonth: true, selected: true, event: { title: 'Youth Summit', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBjJWSUKqdDhFd4xNUwk2kGsDdkPyGiiUu9Di_VrlPQ9pD7MDBD2pgYbhtQJIZGuJQgCxvjg1PsbOxnb9_qu-JgON2VbAf_1R4S0bSVb4ehUAUVaVrSgCJkLhtfFZuLChHOE1q9UALTtFpiuW--pMTOQ8aRGQRsJKFAsHxpFK-lrq6zqeShVHFZv1aQbpbt2Dc83lK1YpnY90wpUh3tbCOUyLObRiYhmZFELp26Zc7G158YZ1Gu6Alxrumivht254nmxlIBq50YBDeI' } },
-  { date: 8, currentMonth: true },
-  { date: 9, currentMonth: true },
-  { date: 10, currentMonth: true },
-  { date: 11, currentMonth: true, event: { title: 'Holiday', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=400' } },
-  { date: 12, currentMonth: true },
-  { date: 13, currentMonth: true },
-  { date: 14, currentMonth: true },
-  { date: 15, currentMonth: true },
-  { date: 16, currentMonth: true },
-  { date: 17, currentMonth: true },
-  { date: 18, currentMonth: true },
-  { date: 19, currentMonth: true },
-  { date: 20, currentMonth: true },
-  { date: 21, currentMonth: true }
-]
+// Current View Date
+const currentDate = ref(new Date(2023, 9, 7)) // Default to Oct 2023 per mockup
+
+// Dynamic Calendar Days
+const calendarDays = computed(() => {
+  const start = startOfWeek(startOfMonth(currentDate.value))
+  const end = endOfWeek(endOfMonth(currentDate.value))
+  
+  // Create 42 cells (6 rows) to ensure consistent layout
+  const interval = eachDayOfInterval({ start, end })
+  
+  // If we have less than 42 days, add an extra week to maintain grid height if needed
+  // However, startOfWeek/endOfWeek usually gives 35 or 42. 
+  // Let's ensure at least 42 for a perfect grid look.
+  let daysArray = interval.map(date => {
+    const event = getEventForDay(date)
+    return {
+      date: date.getDate(),
+      fullDate: date,
+      currentMonth: isSameMonth(date, currentDate.value),
+      prevMonth: !isSameMonth(date, currentDate.value) && date < currentDate.value,
+      nextMonth: !isSameMonth(date, currentDate.value) && date > currentDate.value,
+      selected: isSameDay(date, currentDate.value),
+      event
+    }
+  })
+
+  return daysArray
+})
+
+// Mock Events
+const events = ref([
+  { date: new Date(2023, 9, 2), title: 'Town Hall', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCHXG6H_Yp-n6h1y-f9h_9I_R6h6e7e7y-h8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5A6B7C8D9E0F1G2H3I4J5K6L7M8N9O0P1Q2R3S4T5U6V7W8X9Y0Z1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8R9S0T1U2V3W4X5Y6Z7A8B9C0' },
+  { date: new Date(2023, 9, 6), title: 'Budget Audit', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=400' },
+  { date: new Date(2023, 9, 7), title: 'Youth Summit', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBjJWSUKqdDhFd4xNUwk2kGsDdkPyGiiUu9Di_VrlPQ9pD7MDBD2pgYbhtQJIZGuJQgCxvjg1PsbOxnb9_qu-JgON2VbAf_1R4S0bSVb4ehUAUVaVrSgCJkLhtfFZuLChHOE1q9UALTtFpiuW--pMTOQ8aRGQRsJKFAsHxpFK-lrq6zqeShVHFZv1aQbpbt2Dc83lK1YpnY90wpUh3tbCOUyLObRiYhmZFELp26Zc7G158YZ1Gu6Alxrumivht254nmxlIBq50YBDeI' },
+  { date: new Date(2023, 9, 11), title: 'Holiday', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=400' },
+])
+
+const getEventForDay = (date) => events.value.find(e => isSameDay(e.date, date))
+
+const nextMonth = () => currentDate.value = addMonths(currentDate.value, 1)
+const prevMonth = () => currentDate.value = subMonths(currentDate.value, 1)
+const selectDay = (day) => {
+  if (day.currentMonth) {
+    currentDate.value = day.fullDate
+  }
+}
 
 const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 </script>
@@ -39,11 +72,19 @@ const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
       <!-- Left: Calendar Section -->
       <div class="flex-[2] w-full space-y-6">
         <div class="flex items-center justify-between">
-          <div>
+          <div class="flex items-center gap-4">
             <BasePageHeader 
               title="Events Calendar" 
-              subtitle="Managing local governance activities for October 2023"
+              :subtitle="`Managing local governance activities for ${format(currentDate, 'MMMM yyyy')}`"
             />
+            <div class="flex gap-1 ml-4 bg-surface-container-low p-1 rounded-lg">
+              <button @click="prevMonth" class="p-1 hover:bg-surface-container-lowest rounded-md transition-colors">
+                <span class="material-symbols-outlined text-sm">chevron_left</span>
+              </button>
+              <button @click="nextMonth" class="p-1 hover:bg-surface-container-lowest rounded-md transition-colors">
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+              </button>
+            </div>
           </div>
           <div class="flex bg-surface-container-low p-1 rounded-xl">
             <button class="px-4 py-2 bg-surface-container-lowest shadow-sm rounded-lg text-xs font-bold text-primary uppercase tracking-widest font-headline">Month</button>
@@ -67,11 +108,12 @@ const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
           <!-- Calendar Grid -->
           <div class="grid grid-cols-7 gap-px bg-surface-container-low">
             <div 
-              v-for="(day, idx) in days" 
+              v-for="(day, idx) in calendarDays" 
               :key="idx"
+              @click="selectDay(day)"
               class="h-32 p-2 transition-colors cursor-pointer flex flex-col relative"
               :class="[
-                day.prevMonth ? 'bg-surface-container-low opacity-30' : 'bg-surface-container-lowest hover:bg-surface-container-low',
+                !day.currentMonth ? 'bg-surface-container-low opacity-30 shadow-inner' : 'bg-surface-container-lowest hover:bg-surface-container-low',
                 day.selected ? 'bg-primary/5 border-2 border-primary/20 ring-inset' : ''
               ]"
             >
@@ -81,14 +123,17 @@ const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
               >
                 {{ day.date }}
               </span>
-              <div v-if="day.event" class="flex-1 overflow-hidden relative">
+              <div v-if="day.event" class="flex-1 overflow-hidden relative group">
                 <img 
                   :alt="day.event.title" 
-                  class="w-full h-full object-cover rounded-lg" 
+                  class="w-full h-full object-cover rounded-lg transform group-hover:scale-110 transition-transform duration-500" 
                   :src="day.event.img"
                 />
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                   <p class="text-[9px] text-white font-bold truncate leading-none">{{ day.event.title }}</p>
+                </div>
               </div>
-              <div v-if="day.selected" class="absolute bottom-2 right-2 w-2 h-2 bg-primary rounded-full ring-2 ring-primary/5"></div>
+              <div v-if="day.selected" class="absolute bottom-2 right-2 w-2 h-2 bg-primary rounded-full ring-2 ring-primary/5 shadow-sm"></div>
             </div>
           </div>
         </div>
@@ -113,7 +158,7 @@ const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
             <div class="flex items-center justify-between font-body">
               <div class="flex flex-col">
                 <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest opacity-50">Event Date</span>
-                <span class="text-sm font-bold text-on-surface">Saturday, Oct 7, 2023</span>
+                <span class="text-sm font-bold text-on-surface">{{ format(currentDate, 'EEEE, MMM d, yyyy') }}</span>
               </div>
               <div class="flex flex-col text-right">
                 <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest opacity-50">Expected</span>
@@ -175,3 +220,8 @@ const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     </div>
   </div>
 </template>
+
+<style scoped>
+.font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+.font-body { font-family: 'Inter', sans-serif; }
+</style>
